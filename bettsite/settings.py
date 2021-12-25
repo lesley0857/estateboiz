@@ -28,7 +28,7 @@ SECRET_KEY = 'age$7xp@xi-oi-2=s-8%^p(df9p@&5%7ya7-%^1wrflq9zfdna'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,7 +134,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
     ]
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static_cdn')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 REST_FRAMEWORK = {
     
