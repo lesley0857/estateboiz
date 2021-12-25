@@ -1,0 +1,181 @@
+<html>
+{% load static %}
+<body>
+{{room1}}
+{{request.user}}
+   <!--  <div id="'videogrid"><video id="local_video" autoplay playsinline></video></div> -->
+  <!-- <div id="'videogrid1">herre <video id="local_video1" autoplay playsinline></video></div> -->
+
+      <div id="video-container">
+          <!-- <div> <video id="local-video" style="float:left;" autoplay playsinline></video></div> -->
+          <button id="btn-toggle-audio">Audio mute </button>
+          <button id="btn-toggle-video">video off </button>
+      </div>
+
+
+
+   <form id="formm" >
+       {% csrf_token %}
+        <div id="display"></div>
+        <input type="text" name="username" id="chat">
+        <input type="button" name="submit" id="submit">
+   </form>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"
+></script>
+
+
+<script>
+var y = document.getElementById('submit');
+var dis = document.getElementById('display');
+var u =  document.getElementById('chat')
+ console.log(u)
+          const socket = io('http://127.0.0.1:8000',{
+                       transportOptions:{
+                       polling:{extraHeaders:{'X-Username':'{{theuser}}','X-Roomname':'{{room1}}' } }
+                       }
+                       })
+
+               socket.on('connect',(msg)=>{
+                                   console.log('connected');
+                                   })
+
+                 socket.on('message',(data)=>{
+                                              dis.innerHTML = data
+                                                console.log(  JSON.stringify(data) );
+                                   })
+
+                 y.addEventListener('click',  function(){ socket.emit('message',u.value) })
+
+</script>
+
+<script>
+/**
+    const socket = io('http://127.0.0.1:8000',{
+                       transportOptions:{
+                       polling:{extraHeaders:{'X-Username':'{{theuser}}','X-Roomname':'{{room1}}' } }
+                       }
+                       })
+
+
+                                                                      const lc = new RTCPeerConnection()
+                                                                     const dc = lc.createDataChannel('channel')
+                                                                     dc.addEventListener('open', (e)=>{console.log('connection opened')})
+                                                                     dc.addEventListener('message',(e)=>{console.log('message' + e.data)});
+
+
+     socket.on('connect',(msg)=>{
+                                   console.log('connected');
+                                    function sendSignal(action){
+
+                                                                          var jsonstr = JSON.stringify({
+                                                                          'peer':'{{theuser}}',
+                                                                          'sdp': JSON.stringify(lc.localDescription),
+                                                                          'action':action,
+                                                                          'vidmessage':'im new',
+                                                                          'group':'{{room1}}' })
+
+                                                                          socket.emit('message',jsonstr)
+                                                                         // socket.emit('me', lc.localDescription)
+                                                                         console.log('type'+typeof(lc.localDescription) )
+                                                                 }
+
+                                       lc.onicecandidate  = function(e){console.log('onicecan'+JSON.stringify(lc.localDescription) )}
+                                        lc.createOffer().then(o => lc.setLocalDescription(new RTCSessionDescription(o) ) ).then(o =>console.log('ldp set')).then(o =>sendSignal('new-peer') )
+
+
+                                  })
+
+
+    socket.on('message',(data)=>{
+
+
+                                     var a = JSON.stringify(data)
+
+                                     console.log('mk'+data)
+                                     console.log('srtr'+data.peer)
+                                    var regx = /type/;
+                                    if(regx.test(a)){
+                                                 console.log('mki'+typeof(data))
+
+
+                                                 console.log('data'+ data )
+                                                 if (data.peer === " ") {
+                                                                  console.log('lkok')
+                                                                   }
+                                                 if(data.peer !== '{{theuser}}'){
+                                                                   console.log('lomn')
+                                                                    const rc = new RTCPeerConnection(null);
+
+                                                                    rc.setRemoteDescription(data).then(e =>console.log('ldp setfsd'))
+                                                                   rc.onicecandidate  = function(e){console.log('add'+JSON.stringify(rc.localDescription) )}
+                                                                    rc.ondatachannel = e => {
+                                                                                               rc.dc = e.channel;
+                                                                                                rc.dc.open = e => console.log('connection opened')
+                                                                                               rc.dc.onmessage = e => console.log('message' + e.data)
+                                                                                             }
+
+                                                                     rc.createAnswer().then(a => rc.setLocalDescription(new RTCSessionDescription(a) ) ).then(a =>console.log('local descrip'+a)).then(sendSignal(rc.localDescription) )
+
+                                                                      function sendSignal(b){
+
+                                                                                      var jsonstr = JSON.stringify({
+
+                                                                                      'sdp': b,
+
+                                                                                      'group':'{{room1}}',
+
+                                                                                       'peer': '{{request.user}}' })
+
+                                                                                      socket.emit('me',jsonstr)
+                                                                             }
+
+
+                                                                     rc.onicecandidate  = function(e){sendSignal(rc.localDescription)}
+
+                                                            }
+
+                                                  if(data.peer === '{{theuser}}'){
+                                                                   console.log('lknnm')
+                                                            }
+                                     }
+
+                                  })
+
+
+     socket.on('message2',async (data)=>{
+                                      console.log('d2'+typeof(data))
+                                       var a = JSON.stringify(data)
+
+
+                                    var regx = /type/;
+                                    if(regx.test(a)){
+                                                   console.log('test done')
+                                                       if(data.peer !== '{{request.user}}'){
+                                                                                   console.log('kl'+lc.connectionState)
+                                                                                           lc.connectionstate += async(state) =>{console.log('conn state'+state)}
+
+                                                                                            if(lc.connectionState === 'new'){
+                                                                                                                                  console.log('new')
+                                                                                                                                  lc.addIceCandidate(data)
+                                                                                                                                    //lc.setRemoteDescription(data).then(e =>console.log('last r descrip'))
+                                                                                                                                  }
+                                                                                             if(lc.connectionState === 'completed'){
+                                                                                                                                  console.log('new answer')
+                                                                                                                                    lc.setRemoteDescription(data).then(e =>console.log('last r descrip'))
+                                                                                                                                    console.log('ghl'+lc.connectionState)
+                                                                                                                                  }
+                                                                                              if(lc.connectionState === 'connected'){
+                                                                                                                                  console.log('connected')
+                                                                                                                                   lc.addIceCandidate(data)
+                                                                                                                                    lc.setRemoteDescription(data).then(e =>console.log('last r descrip'))
+                                                                                                                                  }
+                                                                                         }
+
+                                                     }
+
+                                   })
+**/
+</script>
+ </html>

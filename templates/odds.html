@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content='ie=edge'>
+    <title>Title</title>
+</head>
+<body>
+{{s}}
+<form method="post" action=""> {% csrf_token %}
+    {% for a in homewin %}
+    <span >{{a}}</span>
+   <input type="submit" placeholder="{{h.homewinodd}}">
+    {% endfor %}
+</form>
+
+</body>
+</html>

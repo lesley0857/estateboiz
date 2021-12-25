@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{k}}<br>
+
+{% for j in clubs  %}
+{{ j.name1}} vs {{ j.name2}}
+ <a href="{% url 'sumlogic' j.id j.homewin %}">1X <button data-val="{{j.homewin }}"  class="homewin"
+           value="{{j.homewin }}" >{{j.homewin }} </button></a>
+<a>X2 <button  value="{{j.awaywin}}" class="awaywin">
+    {{j.awaywin}}</button></a>
+<br>
+{% endfor %}
+
+
+
+
+
+<input id="vino" >
+<script> var  vinoo = document.getElementById('vino').value;</script>
+<button type="button" onclick="bet(100)">bet</button>
+
+  <div id="holo" style="color:red; border:2px solid blue; margin:5px border-color:red"  ></div>
+
+
+</body>
+
+<script  type="text/javascript" src="{% static 'jquery.js' %}"></script>
+
+<script type="text/javascript" >
+      var  vinoo = document.getElementById('vino');
+      var homewinbtn = document.getElementsByClassName('homewin');
+      var homewinbtn1 = document.getElementsByClassName('awaywin');
+      var g = document.getElementById('holo');
+      var v = [];
+      for(i = 0; i < homewinbtn1.length; i++){
+      homewinbtn1[i].addEventListener('click',function(){
+      var vattt = this.value;
+      v.push(vattt)
+      for(i = 0; i < v.length; i++){
+           g.innerHTML = v
+       }
+
+       console.log(v)
+       }) }
+        for(i = 0; i < homewinbtn.length; i++){
+      homewinbtn[i].addEventListener('click',function(){
+      var vattt = this.value;
+      v.push(vattt)
+       for(i = 0; i < v.length; i++){
+           g.innerHTML = v
+       }
+
+
+       }) }
+</script>
+
+<script>
+   function bet(){
+     var sum = v.reduce(function(a,b)
+     {
+        return a * b * vinoo.value  ;
+     });
+      alert(sum);
+      }
+</script>
+</html>
