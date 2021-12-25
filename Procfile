@@ -1,2 +1,1 @@
-
-web: gunicorn --worker-class eventlet -w 1 bettsite.settings:England
+web: gunicorn bettsite.wsgi
