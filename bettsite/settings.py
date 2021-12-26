@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #own
     'England',
-    'rest_framework',
-    #'rest_framework_simplejwt',
-    'rest_framework_jwt',
+
 
 ]
 
@@ -152,3 +150,4 @@ SITE_ID = 1
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
+CORS_ORIGIN_ALLOW_ALL = True

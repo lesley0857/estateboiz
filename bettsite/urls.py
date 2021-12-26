@@ -21,7 +21,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('api/', include('API.api-url')),
+
 
     path('admin/', admin.site.urls),
     path('login/',login_view,name='login'),
