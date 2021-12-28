@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet bettsite.wsgi:England
+web: gunicorn -k eventlet bettsite.wsgi:England --preload
