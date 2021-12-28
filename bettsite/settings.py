@@ -137,8 +137,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 REST_FRAMEWORK = {
     
     'DEFAULT_AUTHENTICATION_CLASSES':(
-        #'rest_framework.authentication.SessionAuthenticaion',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthenticaion',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
         
    
@@ -149,5 +149,5 @@ SITE_ID = 1
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
 #CORS_ORIGIN_ALLOW_ALL = True
