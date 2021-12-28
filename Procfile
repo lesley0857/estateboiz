@@ -1,1 +1,1 @@
-web: gunicorn -w 1 --worker-class eventlet --bind 0.0.0.0:8000 bettsite.wsgi --preload
+web:  -w 1 --worker-class eventlet --bind 0.0.0.0:8000 bettsite.wsgi --preload
