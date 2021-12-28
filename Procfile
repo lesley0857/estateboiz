@@ -1,1 +1,1 @@
-web: gunicorn bettsite.wsgi:England --preload
+web: gunicorn bettsite.wsgi:England

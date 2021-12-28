@@ -11,12 +11,12 @@ import socketio
 
 from .models import *
 #basedir = os.path.dirname(os.realpath(__file__))
-async_mode = None
+async_mode = 'eventlet'
 from django.http import JsonResponse
 
 
 #from django.forms import inlineformset_factory
-sio = socketio.Server(async_mode='')
+sio = socketio.Server(async_mode='eventlet',always_connect=True)
 app = socketio.WSGIApp(sio)
 
 
