@@ -1,1 +1,1 @@
-web: gunicorn --worker-class eventlet -w 1 bettsite.wsgi:England
+web: gunicorn bettsite.wsgi:England --preload
