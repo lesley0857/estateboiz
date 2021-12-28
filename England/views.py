@@ -16,7 +16,7 @@ from django.http import JsonResponse
 
 
 #from django.forms import inlineformset_factory
-sio = socketio.Server(async_mode='eventlet')
+sio = socketio.Server(async_mode='')
 app = socketio.WSGIApp(sio)
 
 
