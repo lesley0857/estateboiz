@@ -31,7 +31,7 @@ var y = document.getElementById('submit');
 var dis = document.getElementById('display');
 var u =  document.getElementById('chat')
  console.log(u)
-          const socket = io('https://estateboiz.herokuapp.com/',{
+          const socket = io('http://0.0.0.0:8000',{
                        transportOptions:{
                        polling:{extraHeaders:{'X-Username':'{{theuser}}','X-Roomname':'{{room1}}' } }
                        }
