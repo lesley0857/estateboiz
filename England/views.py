@@ -100,6 +100,8 @@ class home_view(View):
         print('usernama',username,roomname)
         print('room', roomname)
         print(sid, 'connected')
+        sio.enter_room(sid, roomname)
+        """
         g = Groupss.objects.get(name=roomname)
         user = User.objects.get(username=username)
         print(g.users.all())
@@ -110,7 +112,7 @@ class home_view(View):
             sio.emit('conninfo', message, to=roomname)
         else:
             print('kklrf') # Raise validation error
-
+     """
 
 
     def check_group(self,theuser,thegroup):
