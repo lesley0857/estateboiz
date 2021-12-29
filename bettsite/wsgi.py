@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 
 import os
 import eventlet
-from engineio.static_files import get_static_file
+#from engineio.static_files import get_static_file
 import socketio
 from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 #from gevent import pywsgi
-from django.contrib.staticfiles.handlers import StaticFilesHandler
+#from django.contrib.staticfiles.handlers import StaticFilesHandler
 from England.views import *
 
 

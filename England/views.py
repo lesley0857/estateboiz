@@ -12,13 +12,22 @@ import socketio
 
 from .models import *
 #basedir = os.path.dirname(os.realpath(__file__))
-async_mode = 'eventlet'
-from django.http import JsonResponse
+sio = socketio.Server(async_mode='eventlet',always_connect=True)
+app = socketio.WSGIApp(sio)
+
+#basedir = os.path.dirname(os.path.realpath(__file__))
+#sio = socketio.Server(async_mode=async_mode)
+thread = None
+
+
+
+
+
+
 
 
 #from django.forms import inlineformset_factory
-sio = socketio.Server(async_mode='eventlet',always_connect=True)
-app = socketio.WSGIApp(sio)
+
 
 
 
@@ -32,9 +41,9 @@ def room_view(request):
 
 class home_view(View):
     template_name = 'homee.html'
-    
+
     global roomname
-    
+
 
 
     def post(self,request):
