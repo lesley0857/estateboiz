@@ -23,10 +23,10 @@ application = get_wsgi_application()
 app = socketio.WSGIApp(sio,application)
 
 
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 
 import eventlet.wsgi
-eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)),app)
+eventlet.wsgi.server(eventlet.listen(('http://estateboiz.herokuapp.com/')),app)
 
 
 #pywsgi.WSGIServer(('localhost',8000), app).serve_forever()
