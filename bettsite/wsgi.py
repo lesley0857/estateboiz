@@ -15,8 +15,13 @@ from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 #from gevent import pywsgi
 #from django.contrib.staticfiles.handlers import StaticFilesHandler
-from England.views import sio
 
+import socketio
+import django
+django.setup()
+
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+sio = socketio.Server(async_mode='eventlet')
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bettsite.settings')
 application = get_wsgi_application()
