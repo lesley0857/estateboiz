@@ -10,9 +10,9 @@ from django.views.generic import ListView,View
 import socketio
 #import os
 
-from England.models import *
+from  England.models import *
 #basedir = os.path.dirname(os.realpath(__file__))
-sio = socketio.Server(async_mode='eventlet',always_connect=True)
+sio = socketio.Server(async_mode='eventlet')
 app = socketio.WSGIApp(sio)
 
 #basedir = os.path.dirname(os.path.realpath(__file__))
