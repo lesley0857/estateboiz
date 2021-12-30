@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet bettsite.wsgi
+web: gunicorn -k eventlet --w 1 bettsite.wsgi:England

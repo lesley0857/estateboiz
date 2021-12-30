@@ -28,7 +28,7 @@ SECRET_KEY = 'age$7xp@xi-oi-2=s-8%^p(df9p@&5%7ya7-%^1wrflq9zfdna'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -88,11 +88,11 @@ DATABASES = {
     }
 }
 
-"""
-import dj_database_url
+
+
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -135,16 +135,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
     ]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-
+"""
 REST_FRAMEWORK = {
     
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework.authentication.SessionAuthenticaion',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-        
-   
 }
+"""
 
 SITE_ID = 1
 
