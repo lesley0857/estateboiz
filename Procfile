@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet --workers 1 bettsite.wsgi
+web: gunicorn -k eventlet -b :8000 --workers 1 bettsite.wsgi
