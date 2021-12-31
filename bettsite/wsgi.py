@@ -18,7 +18,6 @@ from django.conf import settings
 
 import socketio
 import django
-django.setup()
 
 
 sio = socketio.Server(async_mode='eventlet')
@@ -37,7 +36,7 @@ else:
 
 
 import eventlet.wsgi
-eventlet.wsgi.server(eventlet.listen(('https://estateboiz.herokuapp.com/',17995)),app)
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0',17995)),app)
 
 
 #pywsgi.WSGIServer(('localhost',8000), app).serve_forever()
