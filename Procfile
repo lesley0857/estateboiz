@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet --timeout 40 --workers 1 bettsite.wsgi
+web: gunicorn -k eventlet --timeout 0 --workers 1 bettsite.wsgi
