@@ -20,7 +20,7 @@ import socketio
 import django
 django.setup()
 
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 sio = socketio.Server(async_mode='eventlet')
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bettsite.settings')
