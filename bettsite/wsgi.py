@@ -29,14 +29,14 @@ app = socketio.WSGIApp(sio,application)
 ON_HEROKU = os.environ.get('ON_HEROKU')
 if ON_HEROKU:
     # get the heroku port
-    port = int(os.environ.get("PORT", 8000))  # as per OP comments default is 17995
+    port = int(os.environ.get("PORT", 17955))  # as per OP comments default is 17995
 else:
     port = 8000
 
 
 
 import eventlet.wsgi
-eventlet.wsgi.server(eventlet.listen(('0.0.0.0',17995)),app)
+eventlet.wsgi.server(eventlet.listen(('0.0.0.0',8000)),app)
 
 
 #pywsgi.WSGIServer(('localhost',8000), app).serve_forever()
