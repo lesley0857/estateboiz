@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet -b 0.0.0.0:$PORT --workers 1 bettsite.wsgi
+web: gunicorn -k eventlet --timeout 40 --workers 1 bettsite.wsgi
